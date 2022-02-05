@@ -1,11 +1,15 @@
 const Dollar = require('../classes/Dollar');
 const Franc = require('../classes/Franc');
+const Money = require('../classes/Money');
 
 describe('Monies', () => {
   let dollar, franc;
 
   beforeEach(() => {
-    dollar = new Dollar(5);
+
+    dollar = Money.dollar(5)
+    console.log('='.repeat(99))
+    console.log(dollar)
     franc = new Franc(3);
   })
 
@@ -25,8 +29,7 @@ describe('Monies', () => {
       expect(dollar.times(5)).toEqual(new Dollar(25));
       expect(franc.times(5)).toEqual(new Dollar(15));
       expect(franc.times(7)).toEqual(new Dollar(21));
-
-    });  
+    });
   });
 
   it(`should test equality`, () => {
@@ -35,6 +38,8 @@ describe('Monies', () => {
     expect(franc.equals(new Franc(3))).toBe(true);
     expect(franc.equals(new Franc(7))).toBe(false);
 
-    
+    franc = new Franc(10);
+    dollar = new Dollar(10);
+    expect(dollar.equals(franc)).toBe(false);
   });
 })
