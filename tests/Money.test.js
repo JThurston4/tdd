@@ -1,5 +1,3 @@
-const Dollar = require('../classes/Dollar');
-const Franc = require('../classes/Franc');
 const Money = require('../classes/Money');
 
 describe('Monies', () => {
@@ -8,9 +6,7 @@ describe('Monies', () => {
   beforeEach(() => {
 
     dollar = Money.dollar(5)
-    console.log('='.repeat(99))
-    console.log(dollar)
-    franc = new Franc(3);
+    franc = Money.franc(3);
   })
 
   it('should have a numerical value', () => {
@@ -20,26 +16,26 @@ describe('Monies', () => {
 
   describe('it should be able to handle multiplication', () => {
     it('should return a new dollar', () => {
-      expect(dollar.times(1)).toEqual(new Dollar(5));
-      expect(franc.times(1)).toEqual(new Franc(3));
+      expect(dollar.times(1)).toEqual(Money.dollar(5));
+      expect(franc.times(1)).toEqual(Money.franc(3));
     });
 
     it('should accurately multiply more than once', () => {
-      expect(dollar.times(3)).toEqual(new Dollar(15));
-      expect(dollar.times(5)).toEqual(new Dollar(25));
-      expect(franc.times(5)).toEqual(new Dollar(15));
-      expect(franc.times(7)).toEqual(new Dollar(21));
+      expect(dollar.times(3)).toEqual(Money.dollar(15));
+      expect(dollar.times(5)).toEqual(Money.dollar(25));
+      expect(franc.times(5)).toEqual(Money.dollar(15));
+      expect(franc.times(7)).toEqual(Money.dollar(21));
     });
   });
 
   it(`should test equality`, () => {
-    expect(dollar.equals(new Dollar(5))).toBe(true);
-    expect(dollar.equals(new Dollar(7))).toBe(false);
-    expect(franc.equals(new Franc(3))).toBe(true);
-    expect(franc.equals(new Franc(7))).toBe(false);
+    expect(dollar.equals(Money.dollar(5))).toBe(true);
+    expect(dollar.equals(Money.dollar(7))).toBe(false);
+    expect(franc.equals(Money.franc(3))).toBe(true);
+    expect(franc.equals(Money.franc(7))).toBe(false);
 
-    franc = new Franc(10);
-    dollar = new Dollar(10);
+    franc = Money.franc(10);
+    dollar = Money.dollar(10);
     expect(dollar.equals(franc)).toBe(false);
   });
 })
